@@ -19,6 +19,8 @@ public class StrafeMovement : MonoBehaviour
 
     [SerializeField]
     private GameObject camObj;
+    [SerializeField]
+    private SpeedDisplay speedDisplayObj;
 
     private float lastJumpPress = -1f;
     private float jumpPressDuration = 0.1f;
@@ -29,11 +31,17 @@ public class StrafeMovement : MonoBehaviour
     private void Start()
     {
         groundChecker = GetComponentInChildren<GroundCheck>();
+        speedDisplayObj = FindObjectOfType<SpeedDisplay>();
     }
 
     private void Update()
     {
-        print(new Vector3(GetComponent<Rigidbody>().velocity.x, 0f, GetComponent<Rigidbody>().velocity.z).magnitude);
+        float newSpeed = new Vector3(GetComponent<Rigidbody>().velocity.x, 0f, GetComponent<Rigidbody>().velocity.z).magnitude;
+        newSpeed = (float)System.Math.Round(newSpeed, 2);
+
+        speedDisplayObj.WriteSpeed(newSpeed);
+
+
         if (Input.GetButton("Jump"))
 		{
 			lastJumpPress = Time.time;
