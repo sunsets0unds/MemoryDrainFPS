@@ -13,12 +13,6 @@ public class SpeedDisplay : MonoBehaviour
         speedDisplay.text = "0.0 u/s";
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void WriteSpeed(float newSpeed)
     {
         string speedText = "";
