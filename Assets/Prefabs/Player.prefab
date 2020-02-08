@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5048227633473889450}
   - component: {fileID: 5048227633473889446}
   - component: {fileID: 5048227633473889441}
+  - component: {fileID: -6279654609653406840}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -73,6 +74,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -135,6 +137,21 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   camObj: {fileID: 5048227633653577518}
+  speedDisplayObj: {fileID: 0}
+--- !u!114 &-6279654609653406840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5048227633473889451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26095aa747025604b87e108836aab690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  ammo: 100
 --- !u!1 &5048227633653577518
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,7 +162,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5048227633653577513}
   - component: {fileID: 5048227633653577509}
-  - component: {fileID: 5048227633653577514}
   - component: {fileID: 5048227633653577515}
   - component: {fileID: 5048227633653577512}
   - component: {fileID: 5048227633653577508}
@@ -213,14 +229,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!92 &5048227633653577514
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5048227633653577518}
-  m_Enabled: 1
 --- !u!124 &5048227633653577515
 Behaviour:
   m_ObjectHideFlags: 0
@@ -264,11 +272,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5048227633473889447}
     m_Modifications:
-    - target: {fileID: 9073978760922511969, guid: 8b3287757a37e954596831b8015c6c4f,
-        type: 3}
-      propertyPath: m_Name
-      value: GroundCheck
-      objectReference: {fileID: 0}
     - target: {fileID: 549400538068875181, guid: 8b3287757a37e954596831b8015c6c4f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -323,6 +326,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9073978760922511969, guid: 8b3287757a37e954596831b8015c6c4f,
+        type: 3}
+      propertyPath: m_Name
+      value: GroundCheck
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b3287757a37e954596831b8015c6c4f, type: 3}
