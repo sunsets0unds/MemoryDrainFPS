@@ -22,6 +22,14 @@ public class GroundCheck : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == groundTag)
+        {
+            isGround = true;
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if(other.gameObject.tag == groundTag)
