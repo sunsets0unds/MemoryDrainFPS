@@ -14,8 +14,6 @@ public class StrafeMovement : MonoBehaviour
     private float friction = 8f;        // How fast the player decelerates on the ground
     [SerializeField]
     private float jumpForce = 5f;       // How high the player jumps
-    [SerializeField]
-    private LayerMask groundLayers;
 
     [SerializeField]
     private GameObject camObj;
