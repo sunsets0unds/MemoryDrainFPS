@@ -23,18 +23,26 @@ public class StrafeMovement : MonoBehaviour
     private float lastJumpPress = -1f;
     private float jumpPressDuration = 0.1f;
 	private bool onGround = false;
+    private Rigidbody body;
 
     private GroundCheck groundChecker;
+    private WallCheck wallChecker;
+
+    private void Awake()
+    {
+        body = this.GetComponent<Rigidbody>();
+    }
 
     private void Start()
     {
         groundChecker = GetComponentInChildren<GroundCheck>();
         speedDisplayObj = FindObjectOfType<SpeedDisplay>();
+        wallChecker = GetComponentInChildren<WallCheck>();
     }
 
     private void Update()
     {
-        float newSpeed = new Vector3(GetComponent<Rigidbody>().velocity.x, 0f, GetComponent<Rigidbody>().velocity.z).magnitude;
+        float newSpeed = new Vector3(body.velocity.x, 0f, body.velocity.z).magnitude;
         newSpeed = (float)System.Math.Round(newSpeed, 2);
 
         speedDisplayObj.WriteSpeed(newSpeed);
@@ -52,13 +60,17 @@ public class StrafeMovement : MonoBehaviour
 		Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         // Get player velocity
-        Vector3 playerVelocity = GetComponent<Rigidbody>().velocity;
+        Vector3 playerVelocity = body.velocity;
         // Slow down if on ground
         playerVelocity = CalculateFriction(playerVelocity);
         // Add player input
         playerVelocity += CalculateMovement(input, playerVelocity);
+
+        //check if next step collides with wall
+        playerVelocity = wallChecker.CheckStep(playerVelocity, body);
+
         // Assign new velocity to player object
-		GetComponent<Rigidbody>().velocity = playerVelocity;
+        body.velocity = playerVelocity;
 	}
 
     /// <summary>
