@@ -37,7 +37,7 @@ public class StrafeMovement : MonoBehaviour
         float newSpeed = new Vector3(GetComponent<Rigidbody>().velocity.x, 0f, GetComponent<Rigidbody>().velocity.z).magnitude;
         newSpeed = (float)System.Math.Round(newSpeed, 2);
 
-        speedDisplayObj.WriteSpeed(newSpeed);
+        //speedDisplayObj.WriteSpeed(newSpeed);
 
 
         if (Input.GetButton("Jump"))
