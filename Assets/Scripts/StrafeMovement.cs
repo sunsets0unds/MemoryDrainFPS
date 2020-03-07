@@ -60,6 +60,7 @@ public class StrafeMovement : MonoBehaviour
         }
         catch(NullReferenceException e)
         { }
+
         wallChecker = GetComponentInChildren<WallCheck>();
     }
 

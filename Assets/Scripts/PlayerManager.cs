@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -11,7 +12,26 @@ public class PlayerManager : MonoBehaviour
     public int maxAmmo = 150;
     [HideInInspector]
     public bool haveAmmo;
+    private HealthDisplay healthDisplayObj;
+    private AmmoDisplay ammoDisplayObj;
     #endregion
+
+    private void Start()
+    {
+        try
+        {
+            healthDisplayObj = FindObjectOfType<HealthDisplay>();
+        }
+        catch(NullReferenceException e)
+        { }
+
+        try
+        {
+            ammoDisplayObj = FindObjectOfType<AmmoDisplay>();
+        }
+        catch(NullReferenceException e)
+        { }
+    }
 
     // Update is called once per frame
     void Update()
@@ -24,5 +44,15 @@ public class PlayerManager : MonoBehaviour
             haveAmmo = true;
         else
             haveAmmo = false;
+
+        if(healthDisplayObj)
+        {
+            healthDisplayObj.WriteHealth(health);
+        }
+
+        if(ammoDisplayObj)
+        {
+            ammoDisplayObj.WriteAmmo(ammo);
+        }
     }
 }
