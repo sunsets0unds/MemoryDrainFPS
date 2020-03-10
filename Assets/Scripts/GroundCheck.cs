@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
+    [HideInInspector]
     public bool isGround;
     [SerializeField]
     private string groundTag = "Ground";
     [SerializeField]
     private LayerMask groundLayers;
-    [SerializeField, Range(1, 90)]
-    private float maxAngle = 60;
+    [Range(1, 90), Tooltip("Maximum angle the player can walk up")]
+    public float maxAngle = 60;
 
 
     // Start is called before the first frame update

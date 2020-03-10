@@ -9,7 +9,7 @@ public class SpeedDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speedDisplay = this.GetComponentInChildren<Text>();
+        speedDisplay = this.GetComponent<Text>();
         speedDisplay.text = "0.0 u/s";
     }
 
