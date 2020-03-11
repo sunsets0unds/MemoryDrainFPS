@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     #region public variables
-    public int health = 100;
+    public float health = 100;
     public int maxHealth = 100;
     public int ammo = 100;
     public int maxAmmo = 150;
@@ -47,12 +47,17 @@ public class PlayerManager : MonoBehaviour
 
         if(healthDisplayObj)
         {
-            healthDisplayObj.WriteHealth(health);
+            healthDisplayObj.WriteHealth((int)health);
         }
 
         if(ammoDisplayObj)
         {
             ammoDisplayObj.WriteAmmo(ammo);
         }
+    }
+
+    public void playerDamage(float damage)
+    {
+        this.health -= damage;
     }
 }
