@@ -133,6 +133,11 @@ namespace StateMachine
             return newState;
         }
 
+        public string GetCurrentStateName()
+        {
+            return this.currentState.GetName();
+        }
+
     }
 }
 

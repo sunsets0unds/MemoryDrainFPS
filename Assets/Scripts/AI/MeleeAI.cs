@@ -18,6 +18,7 @@ public class MeleeAI : MonoBehaviour
 
     private Vector3 home;
     private DetectPlayer trigger;
+    private NavMeshAgent navMeshAgent;
 
     private FSM fsm;
     private FSMState MoveLeftState;
@@ -33,7 +34,9 @@ public class MeleeAI : MonoBehaviour
     private MeleeAction meleeAction;
     private TextAction IdleAction1;
     private TextAction IdleAction2;
-    private NavMeshAgent navMeshAgent;
+
+    [SerializeField]
+    private string currentState;
 
     // Start is called before the first frame update
     void Start()
@@ -104,5 +107,7 @@ public class MeleeAI : MonoBehaviour
         {
             fsm.SendEvent("ToMelee");
         }
+
+        currentState = fsm.GetCurrentStateName();
     }
 }

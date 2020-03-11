@@ -66,6 +66,11 @@ namespace StateMachine
             this.owner.SendEvent(eventId);
         }
 
+        public string GetName()
+        {
+            return name;
+        }
+
     }
 
 }
