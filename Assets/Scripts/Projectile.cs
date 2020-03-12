@@ -13,18 +13,15 @@ public class Projectile : MonoBehaviour
         StartCoroutine(projectileLifespanCo());
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag != this.tag)
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag != this.tag)
         {
+            if(collision.gameObject.tag == "Enemy")
+            {
+                collision.gameObject.GetComponent<EnemyManager>().damageEnemy(damage);
+            }
+
             Destroy(this.gameObject);
         }
     }
