@@ -6,9 +6,10 @@ public class DetectPlayer : MonoBehaviour
 {
     [HideInInspector]
     public bool playerFound = false;
+    [SerializeField]
     private PlayerManager player;
 
-    private void Start()
+    private void Awake()
     {
         player = FindObjectOfType<PlayerManager>();
     }

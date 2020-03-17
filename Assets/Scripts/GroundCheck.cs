@@ -50,7 +50,7 @@ public class GroundCheck : MonoBehaviour
             {
                 float angle = Vector3.Angle(hit.normal, Vector3.up);
 
-                if (angle < 60)
+                if (angle < maxAngle)
                     isGround = true;
                 else
                     isGround = false;
