@@ -47,7 +47,7 @@ public class MeleeAI : MonoBehaviour
 
         fsm = new FSM("MeleeAI FSM");
 
-        WanderState = fsm.AddState("MoveState");
+        WanderState = fsm.AddState("WanderState");
         IdleState = fsm.AddState("IdleState");
         AlertState = fsm.AddState("AlertState");
         MeleeState = fsm.AddState("MeleeState");
@@ -80,7 +80,7 @@ public class MeleeAI : MonoBehaviour
         fsm.Start("IdleState");
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(home, wanderRadius);
     }
@@ -92,7 +92,10 @@ public class MeleeAI : MonoBehaviour
 
         if(trigger.playerFound)
         {
-            fsm.SendEvent("PlayerDetect");
+            if(fsm.GetCurrentStateName() != "AlertState")
+            {
+                fsm.SendEvent("PlayerDetect");
+            }
         }
 
     }
@@ -101,7 +104,10 @@ public class MeleeAI : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, trigger.findPlayerInScene()) <= 1)
         {
-            fsm.SendEvent("ToMelee");
+            if(fsm.GetCurrentStateName() == "AlertState")
+            {
+                fsm.SendEvent("ToMelee");
+            }
         }
     }
 }

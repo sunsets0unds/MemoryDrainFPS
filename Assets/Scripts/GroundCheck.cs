@@ -13,6 +13,10 @@ public class GroundCheck : MonoBehaviour
     [Range(1, 90), Tooltip("Maximum angle the player can walk up")]
     public float maxAngle = 60;
 
+    private void Awake()
+    {
+        groundLayers = LayerMask.GetMask("Ground");
+    }
 
     // Start is called before the first frame update
     void Start()

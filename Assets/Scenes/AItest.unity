@@ -655,25 +655,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1925170661 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8080791533902645062, guid: 3ccfb62665ea5ba4fb997639f530d4b4,
-    type: 3}
-  m_PrefabInstance: {fileID: 8080791534977140981}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1925170662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1925170661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec6c2f412ab4d34ebe82a72eedee5c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
 --- !u!1001 &2007901758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -743,6 +724,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: becfd60872d01be4396eeb69ac4d9d9b, type: 3}
+--- !u!114 &2007901759 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -6279654609653406840, guid: becfd60872d01be4396eeb69ac4d9d9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2007901758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26095aa747025604b87e108836aab690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8080791534977140981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -810,46 +803,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeAI
       objectReference: {fileID: 0}
-    - target: {fileID: 8080791533902645062, guid: 3ccfb62665ea5ba4fb997639f530d4b4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8080791533902645069, guid: 3ccfb62665ea5ba4fb997639f530d4b4,
-        type: 3}
-      propertyPath: waypoints.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8080791533902645069, guid: 3ccfb62665ea5ba4fb997639f530d4b4,
-        type: 3}
-      propertyPath: enemyPreset
-      value: 
-      objectReference: {fileID: 11400000, guid: 02b0fe7d5ad99fe4aaada53d942606f8,
-        type: 2}
-    - target: {fileID: 8080791533902645069, guid: 3ccfb62665ea5ba4fb997639f530d4b4,
-        type: 3}
-      propertyPath: waypoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8080791533902645069, guid: 3ccfb62665ea5ba4fb997639f530d4b4,
-        type: 3}
-      propertyPath: waypoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8080791533902645069, guid: 3ccfb62665ea5ba4fb997639f530d4b4,
-        type: 3}
-      propertyPath: waypoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8080791534248439689, guid: 3ccfb62665ea5ba4fb997639f530d4b4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8080791534248439690, guid: 3ccfb62665ea5ba4fb997639f530d4b4,
         type: 3}
-      propertyPath: maxCone
-      value: 80
-      objectReference: {fileID: 0}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2007901759}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ccfb62665ea5ba4fb997639f530d4b4, type: 3}

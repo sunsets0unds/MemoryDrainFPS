@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 8080791533902645057}
   - component: {fileID: 8080791533902645068}
   - component: {fileID: 8080791533902645069}
-  m_Layer: 0
+  - component: {fileID: 1925170662}
+  m_Layer: 2
   m_Name: MeleeAI
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -131,11 +132,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d71732c83854dd24189d0bade03ec56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyPreset: {fileID: 11400000, guid: 02b0fe7d5ad99fe4aaada53d942606f8, type: 2}
   damage: 2
   moveTime: 5
   idleTime: 3
-  pos1: {x: 5, y: 0, z: 0}
-  pos2: {x: -5, y: 0, z: 0}
+  wanderRadius: 5
+--- !u!114 &1925170662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8080791533902645062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec6c2f412ab4d34ebe82a72eedee5c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &8080791534248439689
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +161,7 @@ GameObject:
   - component: {fileID: 8080791534248439688}
   - component: {fileID: 8080791534248439691}
   - component: {fileID: 8080791534248439690}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,3 +208,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerFound: 0
+  player: {fileID: 0}
+  maxCone: 80

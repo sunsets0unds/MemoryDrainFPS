@@ -16,7 +16,7 @@ public class DetectPlayer : MonoBehaviour
         player = FindObjectOfType<PlayerManager>();
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Matrix4x4 temp = Gizmos.matrix;
         Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
@@ -37,11 +37,15 @@ public class DetectPlayer : MonoBehaviour
             {
                 if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, this.GetComponent<SphereCollider>().radius) && hit.transform.tag == "Player")
                 {
+                    Debug.DrawRay(transform.position, hit.point, Color.green);
                     playerFound = true;
                 }
                 else
+                {
+                    Debug.DrawRay(transform.position, hit.point, Color.red);
                     playerFound = false;
-                
+                }
+
             }
             else
             {
@@ -63,10 +67,14 @@ public class DetectPlayer : MonoBehaviour
             {
                 if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, this.GetComponent<SphereCollider>().radius) && hit.transform.tag == "Player")
                 {
+                    Debug.DrawRay(transform.position, hit.point, Color.green);
                     playerFound = true;
                 }
                 else
+                {
+                    Debug.DrawRay(transform.position, hit.point, Color.red);
                     playerFound = false;
+                }
             }
             else
             {
