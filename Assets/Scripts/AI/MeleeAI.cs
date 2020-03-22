@@ -14,20 +14,19 @@ public class MeleeAI : MonoBehaviour
     public float moveTime = 1f;
     [Range(0f, 10f)]
     public float idleTime = 3f;
-    public GameObject[] waypoints;
-    private Vector3[] waypointPos;
+    public float wanderRadius = 5f;
 
     private Vector3 home;
     private DetectPlayer trigger;
     private NavMeshAgent navMeshAgent;
 
     private FSM fsm;
-    private FSMState MoveState;
+    private FSMState WanderState;
     private FSMState IdleState;
     private FSMState AlertState;
     private FSMState MeleeState;
 
-    private MoveAction MoveAction;
+    private WanderAction WanderAction;
     private AlertAction alertAction;
     private MeleeAction meleeAction;
     private TextAction IdleAction;
@@ -38,15 +37,6 @@ public class MeleeAI : MonoBehaviour
         damage = enemyPreset.damage;
         moveTime = enemyPreset.moveTime;
         idleTime = enemyPreset.idleTime;
-        waypointPos = new Vector3[waypoints.Length];
-
-        int i = 0;
-
-        foreach (GameObject w in waypoints)
-        {
-            waypointPos[i] = w.transform.position;
-            i++;
-        }
 
         home = transform.position;
 
@@ -56,32 +46,32 @@ public class MeleeAI : MonoBehaviour
 
         fsm = new FSM("MeleeAI FSM");
 
-        MoveState = fsm.AddState("MoveState");
+        WanderState = fsm.AddState("MoveState");
         IdleState = fsm.AddState("IdleState");
         AlertState = fsm.AddState("AlertState");
         MeleeState = fsm.AddState("MeleeState");
 
-        MoveAction = new MoveAction(MoveState);
+        WanderAction = new WanderAction(WanderState);
         IdleAction = new TextAction(IdleState);
         alertAction = new AlertAction(AlertState);
         meleeAction = new MeleeAction(MeleeState);
 
-        MoveState.AddAction(MoveAction);
+        WanderState.AddAction(WanderAction);
         IdleState.AddAction(IdleAction);
         AlertState.AddAction(alertAction);
         MeleeState.AddAction(meleeAction);
 
-        MoveState.AddTransition("ToIdle", IdleState);
-        MoveState.AddTransition("PlayerDetect", AlertState);
-        IdleState.AddTransition("ToMove", MoveState);
+        WanderState.AddTransition("ToIdle", IdleState);
+        WanderState.AddTransition("PlayerDetect", AlertState);
+        IdleState.AddTransition("ToWander", WanderState);
         IdleState.AddTransition("PlayerDetect", AlertState);
 
         AlertState.AddTransition("ToIdle", IdleState);
         AlertState.AddTransition("ToMelee", MeleeState);
         MeleeState.AddTransition("ToAlert", AlertState);
 
-        MoveAction.Init(this.transform, navMeshAgent, waypointPos, moveTime, "ToIdle");
-        IdleAction.Init("Idling", idleTime, "ToMove");
+        WanderAction.Init(this.transform, home, navMeshAgent, wanderRadius, moveTime, "ToIdle");
+        IdleAction.Init("Idling", idleTime, "ToWander");
 
         alertAction.Init(trigger, navMeshAgent, trigger.findPlayerInScene(), "ToIdle");
         meleeAction.Init(this.transform, damage, trigger, FindObjectOfType<PlayerManager>(), "ToAlert");
