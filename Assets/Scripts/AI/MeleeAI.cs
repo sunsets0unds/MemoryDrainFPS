@@ -14,6 +14,7 @@ public class MeleeAI : MonoBehaviour
     public float moveTime = 1f;
     [Range(0f, 10f)]
     public float idleTime = 3f;
+    [Range(1f, 20f)]
     public float wanderRadius = 5f;
 
     private Vector3 home;
@@ -77,6 +78,11 @@ public class MeleeAI : MonoBehaviour
         meleeAction.Init(this.transform, damage, trigger, FindObjectOfType<PlayerManager>(), "ToAlert");
 
         fsm.Start("IdleState");
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(home, wanderRadius);
     }
 
     // Update is called once per frame
