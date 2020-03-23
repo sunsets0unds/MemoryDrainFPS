@@ -8,22 +8,24 @@ public class MoveAction : FSMAction
 {
     private Transform transform;
     private NavMeshAgent navMeshAgent;
-    private Vector3 positionTo;
     private float duration;
     private float cachedDuration;
     private string finishEvent;
+    private Vector3[] waypoints;
+    private int count = 0;
 
     public MoveAction(FSMState owner) : base (owner)
     { }
 
-    public void Init(Transform transform, NavMeshAgent navMeshAgent, Vector3 to,  float duration, string finishEvent = null)
+    public void Init(Transform transform, NavMeshAgent navMeshAgent, Vector3[] waypoints, float duration, string finishEvent = null)
     {
         this.transform = transform;
         this.navMeshAgent = navMeshAgent;
-        this.positionTo = to;
         this.duration = duration;
         this.cachedDuration = duration;
+        this.waypoints = waypoints;
         this.finishEvent = finishEvent;
+        this.count = 0;
     }
 
     public override void OnEnter()
@@ -34,7 +36,10 @@ public class MoveAction : FSMAction
             return;
         }
 
-        SetPosition(this.positionTo);
+        if (navMeshAgent.isStopped)
+            navMeshAgent.isStopped = false;
+
+        SetPosition(waypoints[count]);
     }
 
     public override void OnUpdate()
@@ -47,10 +52,17 @@ public class MoveAction : FSMAction
             return;
         }
 
-        if(transform.position.x == positionTo.x && transform.position.z == positionTo.z)
+        if(transform.position.x == waypoints[count].x && transform.position.z == waypoints[count].z)
         {
-            Finish();
-            return;
+            count++;
+
+            if(count >= waypoints.Length)
+            {
+                Finish();
+                return;
+            }
+
+            SetPosition(waypoints[count]);
         }
     }
 
@@ -61,7 +73,11 @@ public class MoveAction : FSMAction
             GetOwner().SendEvent(finishEvent);
         }
 
+        navMeshAgent.isStopped = true;
+
         duration = cachedDuration;
+        if (count >= waypoints.Length)
+            count = 0;
     }
 
     private void SetPosition(Vector3 position)

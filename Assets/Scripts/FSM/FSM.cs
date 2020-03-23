@@ -79,9 +79,6 @@ namespace StateMachine
             });
         }
 
-        public void SendEvent()
-        { }
-
         private delegate void StateActionProcessor(FSMAction action);
 
         private void ProcessStateAction(FSMState state, StateActionProcessor actionProcessor)
