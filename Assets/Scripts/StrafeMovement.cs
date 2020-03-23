@@ -1,44 +1,76 @@
 ﻿using UnityEngine;
+using System;
+
+/*
+ * StrafeMovement
+ * Created by TheAsuro on Github
+ * Modified by Michael Amatucci
+ * Last modified: 2/26/2020
+ */
 
 public class StrafeMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float accel = 200f;         // How fast the player accelerates on the ground
-    [SerializeField]
-    private float airAccel = 200f;      // How fast the player accelerates in the air
-    [SerializeField]
-    private float maxSpeed = 6.4f;      // Maximum player speed on the ground
-    [SerializeField]
+    #region Inspector Variables
+    [Header("Speed Variables")]
+    [SerializeField, Min(1)]
+    private float maxGroundSpeed = 6.4f;      // Maximum player speed on the ground
+    [SerializeField, Min(0.5f)]
     private float maxAirSpeed = 0.6f;   // "Maximum" player speed in the air
     [SerializeField]
     private float friction = 8f;        // How fast the player decelerates on the ground
     [SerializeField]
     private float jumpForce = 5f;       // How high the player jumps
+    [SerializeField, Range(10, 100), Tooltip("The max speed the player can achieve when airstrafing")]
+    private float speedLimit = 15f;     // The speed that is the absolute limit the player can reach
+    [SerializeField, Tooltip("Choose whether to limit the player's speed")]
+    private bool limitSpeed = false;
+    [SerializeField, InspectorName("Ground Acceleration")]
+    private float accel = 200f;         // How fast the player accelerates on the ground
+    [SerializeField, InspectorName("Air Acceleration")]
+    private float airAccel = 200f;      // How fast the player accelerates in the air
 
-    [SerializeField]
+    [Space(20)]
+
+    [SerializeField, Tooltip("Camera attached to player")]
     private GameObject camObj;
-    [SerializeField]
+    [SerializeField, Tooltip("A script on a text UI object, diplays the speed of the player. Useful for testing, but not required.")]
     private SpeedDisplay speedDisplayObj;
+    #endregion
 
     private float lastJumpPress = -1f;
     private float jumpPressDuration = 0.1f;
 	private bool onGround = false;
+    private Rigidbody body;
 
     private GroundCheck groundChecker;
+    private WallCheck wallChecker;
+
+    #region Monobehavior
+    private void Awake()
+    {
+        body = this.GetComponent<Rigidbody>();
+    }
 
     private void Start()
     {
         groundChecker = GetComponentInChildren<GroundCheck>();
-        speedDisplayObj = FindObjectOfType<SpeedDisplay>();
+        try
+        {
+            speedDisplayObj = FindObjectOfType<SpeedDisplay>();
+        }
+        catch(NullReferenceException e)
+        { }
+
+        wallChecker = GetComponentInChildren<WallCheck>();
     }
 
     private void Update()
     {
-        float newSpeed = new Vector3(GetComponent<Rigidbody>().velocity.x, 0f, GetComponent<Rigidbody>().velocity.z).magnitude;
+        float newSpeed = new Vector3(body.velocity.x, 0f, body.velocity.z).magnitude;
         newSpeed = (float)System.Math.Round(newSpeed, 2);
 
-        //speedDisplayObj.WriteSpeed(newSpeed);
-
+        if(speedDisplayObj)
+            speedDisplayObj.WriteSpeed(newSpeed);
 
         if (Input.GetButton("Jump"))
 		{
@@ -48,25 +80,32 @@ public class StrafeMovement : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-
 		Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         // Get player velocity
-        Vector3 playerVelocity = GetComponent<Rigidbody>().velocity;
+        Vector3 playerVelocity = body.velocity;
         // Slow down if on ground
         playerVelocity = CalculateFriction(playerVelocity);
         // Add player input
         playerVelocity += CalculateMovement(input, playerVelocity);
+
+        if (playerVelocity.magnitude > speedLimit && limitSpeed)
+            playerVelocity = Vector3.ClampMagnitude(playerVelocity, speedLimit);
+
+        //check if next step collides with wall
+        playerVelocity = wallChecker.CheckStep(playerVelocity, body);
+
         // Assign new velocity to player object
-		GetComponent<Rigidbody>().velocity = playerVelocity;
+        body.velocity = playerVelocity;
 	}
+    #endregion
 
     /// <summary>
     /// Slows down the player if on ground
     /// </summary>
     /// <param name="currentVelocity">Velocity of the player</param>
     /// <returns>Modified velocity of the player</returns>
-	private Vector3 CalculateFriction(Vector3 currentVelocity)
+    private Vector3 CalculateFriction(Vector3 currentVelocity)
 	{
         onGround = CheckGround();
 		float speed = currentVelocity.magnitude;
@@ -94,7 +133,7 @@ public class StrafeMovement : MonoBehaviour
             curAccel = airAccel;
 
         //Ground speed
-        float curMaxSpeed = maxSpeed;
+        float curMaxSpeed = maxGroundSpeed;
 
         //Air speed
         if (!onGround)

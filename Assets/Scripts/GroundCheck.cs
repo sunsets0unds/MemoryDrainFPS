@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
+    [HideInInspector]
     public bool isGround;
     [SerializeField]
     private string groundTag = "Ground";
+    [SerializeField]
+    private LayerMask groundLayers;
+    [Range(1, 90), Tooltip("Maximum angle the player can walk up")]
+    public float maxAngle = 60;
+
+    private void Awake()
+    {
+        groundLayers = LayerMask.GetMask("Ground");
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +28,18 @@ public class GroundCheck : MonoBehaviour
     {
         if (other.gameObject.tag == groundTag)
         {
-            isGround = true;
+            Ray ray = new Ray(transform.position, Vector3.down);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 1, groundLayers))
+            {
+                float angle = Vector3.Angle(hit.normal, Vector3.up);
+
+                if (angle < maxAngle)
+                    isGround = true;
+                else
+                    isGround = false;
+            }
         }
     }
 
@@ -26,7 +47,18 @@ public class GroundCheck : MonoBehaviour
     {
         if (other.gameObject.tag == groundTag)
         {
-            isGround = true;
+            Ray ray = new Ray(transform.position, Vector3.down);
+            RaycastHit hit;
+
+            if(Physics.Raycast(ray, out hit, 1, groundLayers))
+            {
+                float angle = Vector3.Angle(hit.normal, Vector3.up);
+
+                if (angle < maxAngle)
+                    isGround = true;
+                else
+                    isGround = false;
+            }
         }
     }
 

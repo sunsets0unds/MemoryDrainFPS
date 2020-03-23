@@ -14,11 +14,11 @@ public class HealthPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if(other.tag == "Player")
         {
             PlayerManager playerManager = other.GetComponent<PlayerManager>();
 
-            if (playerManager.health < 100)
+            if(playerManager.health < 100)
             {
                 playerManager.health += amount;
                 Destroy(this.gameObject);
