@@ -8,7 +8,7 @@ public class DetectPlayer : MonoBehaviour
     public bool playerFound = false;
     [SerializeField]
     private PlayerManager player;
-    [Range(15, 80)]
+    [Range(1, 90)]
     public float maxCone = 20f;
 
     private void Awake()
