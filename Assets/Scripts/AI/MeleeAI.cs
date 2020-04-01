@@ -82,7 +82,7 @@ public class MeleeAI : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(home, wanderRadius);
+        Gizmos.DrawWireSphere(transform.position, wanderRadius);
     }
 
     // Update is called once per frame

@@ -16,6 +16,12 @@ public class DetectPlayer : MonoBehaviour
         player = FindObjectOfType<PlayerManager>();
     }
 
+    private void Update()
+    {
+        if (player == null)
+            player = FindObjectOfType<PlayerManager>();
+    }
+
     private void OnDrawGizmosSelected()
     {
         Matrix4x4 temp = Gizmos.matrix;
