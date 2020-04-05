@@ -38,6 +38,7 @@ public class MeleeAI : MonoBehaviour
         damage = enemyPreset.damage;
         moveTime = enemyPreset.moveTime;
         idleTime = enemyPreset.idleTime;
+        wanderRadius = enemyPreset.wanderRadius;
 
         home = transform.position;
 
