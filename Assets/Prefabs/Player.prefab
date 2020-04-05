@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1560aa850300f5a4c8a31ab11aef9546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxGroundSpeed: 6.4
+  maxGroundSpeed: 9
   maxAirSpeed: 0.6
   friction: 8
   jumpForce: 5
