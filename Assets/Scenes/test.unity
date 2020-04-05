@@ -880,10 +880,10 @@ PrefabInstance:
       propertyPath: maxGroundSpeed
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 5048227633473889446, guid: becfd60872d01be4396eeb69ac4d9d9b,
+    - target: {fileID: 1276634508887705943, guid: becfd60872d01be4396eeb69ac4d9d9b,
         type: 3}
-      propertyPath: m_Mass
-      value: 1
+      propertyPath: maxAirSpeed
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5048227633473889447, guid: becfd60872d01be4396eeb69ac4d9d9b,
         type: 3}

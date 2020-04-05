@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -97,5 +98,11 @@ public class PlayerManager : MonoBehaviour
     public void playerDamage(float damage)
     {
         this.health -= damage;
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        playerStart = FindObjectOfType<PlayerStart>();
+        gameObject.transform.position = playerStart.GetPosition();
     }
 }
