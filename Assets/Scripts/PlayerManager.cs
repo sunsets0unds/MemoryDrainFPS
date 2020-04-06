@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -12,9 +13,29 @@ public class PlayerManager : MonoBehaviour
     public int maxAmmo = 150;
     [HideInInspector]
     public bool haveAmmo;
+    #endregion
+
+    #region private variables
     private HealthDisplay healthDisplayObj;
     private AmmoDisplay ammoDisplayObj;
+    private PlayerStart playerStart;
+    private static PlayerManager player;
     #endregion
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+
+        if (player == null)
+            player = this;
+        else
+            Destroy(gameObject);
+
+        if (playerStart == null)
+            playerStart = FindObjectOfType<PlayerStart>();
+
+        gameObject.transform.position = playerStart.GetPosition();
+    }
 
     private void Start()
     {
@@ -49,15 +70,39 @@ public class PlayerManager : MonoBehaviour
         {
             healthDisplayObj.WriteHealth((int)health);
         }
+        else
+        {
+            try
+            {
+                healthDisplayObj = FindObjectOfType<HealthDisplay>();
+            }
+            catch (NullReferenceException e)
+            { }
+        }
 
         if(ammoDisplayObj)
         {
             ammoDisplayObj.WriteAmmo(ammo);
+        }
+        else
+        {
+            try
+            {
+                ammoDisplayObj = FindObjectOfType<AmmoDisplay>();
+            }
+            catch (NullReferenceException e)
+            { }
         }
     }
 
     public void playerDamage(float damage)
     {
         this.health -= damage;
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        playerStart = FindObjectOfType<PlayerStart>();
+        gameObject.transform.position = playerStart.GetPosition();
     }
 }
