@@ -38,6 +38,7 @@ public class MeleeAI : MonoBehaviour
         damage = enemyPreset.damage;
         moveTime = enemyPreset.moveTime;
         idleTime = enemyPreset.idleTime;
+        wanderRadius = enemyPreset.wanderRadius;
 
         home = transform.position;
 
@@ -82,7 +83,7 @@ public class MeleeAI : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(home, wanderRadius);
+        Gizmos.DrawWireSphere(transform.position, wanderRadius);
     }
 
     // Update is called once per frame
