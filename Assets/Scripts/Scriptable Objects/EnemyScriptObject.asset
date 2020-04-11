@@ -15,6 +15,7 @@ MonoBehaviour:
   health: 100
   damage: 2
   moveTime: 5
-  idleTime: 3
+  idleTimeMin: 2
+  idleTimeMax: 5
   detectionRadius: 10
-  numberOfWaypoints: 4
+  wanderRadius: 5
