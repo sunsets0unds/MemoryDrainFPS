@@ -18,7 +18,7 @@ public class AmmoPickup : MonoBehaviour
         {
             PlayerManager playerManager = other.GetComponent<PlayerManager>();
 
-            if (playerManager.ammo < 100)
+            if (playerManager.ammo < 200)
             {
                 playerManager.ammo += amount;
                 Destroy(this.gameObject);
