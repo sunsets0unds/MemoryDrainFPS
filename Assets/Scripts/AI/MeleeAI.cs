@@ -13,9 +13,7 @@ public class MeleeAI : MonoBehaviour
     [Range(0f, 10f)]
     public float moveTime = 1f;
     [Range(0f, 10f)]
-    public float idleTimeMin = 3f;
-    [Range(5f, 20f)]
-    public float idleTimeMax = 5f;
+    public float idleTime = 3f;
     [Range(1f, 20f)]
     public float wanderRadius = 5f;
 
@@ -39,9 +37,7 @@ public class MeleeAI : MonoBehaviour
     {
         damage = enemyPreset.damage;
         moveTime = enemyPreset.moveTime;
-        idleTimeMin = enemyPreset.idleTimeMin;
-        idleTimeMax = enemyPreset.idleTimeMax;
-        wanderRadius = enemyPreset.wanderRadius;
+        idleTime = enemyPreset.idleTime;
 
         home = transform.position;
 
@@ -76,7 +72,7 @@ public class MeleeAI : MonoBehaviour
         MeleeState.AddTransition("ToAlert", AlertState);
 
         WanderAction.Init(this.transform, home, navMeshAgent, wanderRadius, moveTime, "ToIdle");
-        IdleAction.Init("Idling", Random.Range(idleTimeMin, idleTimeMax), "ToWander");
+        IdleAction.Init("Idling", idleTime, "ToWander");
 
         alertAction.Init(trigger, navMeshAgent, trigger.findPlayerInScene(), "ToIdle");
         meleeAction.Init(this.transform, damage, trigger, FindObjectOfType<PlayerManager>(), "ToAlert");
@@ -86,7 +82,7 @@ public class MeleeAI : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(transform.position, wanderRadius);
+        Gizmos.DrawWireSphere(home, wanderRadius);
     }
 
     // Update is called once per frame

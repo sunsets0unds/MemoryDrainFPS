@@ -13,7 +13,6 @@ public class WanderAction : FSMAction
     private float cachedDuration;
     private float wanderRadius;
     private string finishEvent;
-    private int maxAttempts = 50;
 
     public WanderAction(FSMState owner) : base(owner)
     { }
@@ -72,7 +71,6 @@ public class WanderAction : FSMAction
     private NavMeshPath CalcNextPos(float wanderRadius)
     {
         bool validPos = false;
-        int attempts = 0;
 
         do
         {
@@ -87,7 +85,6 @@ public class WanderAction : FSMAction
             if (newPath.status == NavMeshPathStatus.PathPartial)
             {
                 validPos = false;
-                attempts++;
             }
             else
             {
@@ -95,14 +92,7 @@ public class WanderAction : FSMAction
                 return newPath;
             }
 
-            if(attempts >= maxAttempts)
-            {
-                validPos = true;
-            }
-
         } while (!validPos);
-
-        Debug.LogError("Max attempts to find valid position reached. NavMesh may be missing or broken.");
 
         return null;
     }

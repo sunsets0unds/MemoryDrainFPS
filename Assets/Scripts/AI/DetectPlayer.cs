@@ -8,18 +8,12 @@ public class DetectPlayer : MonoBehaviour
     public bool playerFound = false;
     [SerializeField]
     private PlayerManager player;
-    [Range(1, 90)]
+    [Range(15, 80)]
     public float maxCone = 20f;
 
     private void Awake()
     {
         player = FindObjectOfType<PlayerManager>();
-    }
-
-    private void Update()
-    {
-        if (player == null)
-            player = FindObjectOfType<PlayerManager>();
     }
 
     private void OnDrawGizmosSelected()
