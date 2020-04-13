@@ -8,6 +8,8 @@ public class EnemyScriptObject : ScriptableObject
     public int health;
     public int damage;
     public float moveTime;
-    public float idleTime;
+    public float idleTimeMin;
+    public float idleTimeMax;
     public float detectionRadius;
+    public float wanderRadius;
 }
