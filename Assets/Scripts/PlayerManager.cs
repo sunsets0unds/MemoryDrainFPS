@@ -12,7 +12,10 @@ public class PlayerManager : MonoBehaviour
     public int ammo = 100;
     public int maxAmmo = 150;
     [HideInInspector]
-    public bool haveAmmo;
+    public bool haveAmmo = true;
+    public GameObject noAmmoInd;
+    public int deathSceneIndex = 0;
+    public GameObject levelEndObj;
     #endregion
 
     #region private variables
@@ -61,12 +64,27 @@ public class PlayerManager : MonoBehaviour
             health = maxHealth;
         if (ammo > maxAmmo)
             ammo = maxAmmo;
-        if (ammo > 0)
-            haveAmmo = true;
-        else
-            haveAmmo = false;
 
-        if(healthDisplayObj)
+        if (ammo > 0)
+        {
+            haveAmmo = true;
+            if (noAmmoInd)
+                noAmmoInd.SetActive(false);
+        }
+        else
+        {
+            haveAmmo = false;
+            if (noAmmoInd)
+                noAmmoInd.SetActive(true);
+        }
+
+        if (health <= 0)
+        {
+            GameManager.ChangeLevel(deathSceneIndex);
+            health = maxHealth;
+        }
+
+        if (healthDisplayObj)
         {
             healthDisplayObj.WriteHealth((int)health);
         }
@@ -104,5 +122,10 @@ public class PlayerManager : MonoBehaviour
     {
         playerStart = FindObjectOfType<PlayerStart>();
         gameObject.transform.position = playerStart.GetPosition();
+    }
+
+    public static PlayerManager ActivePlayer()
+    {
+        return player;
     }
 }

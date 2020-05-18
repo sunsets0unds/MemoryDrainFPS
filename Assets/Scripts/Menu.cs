@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    public int levelToLoad = 0;
-
-    public void NewGame()
+    private void Start()
     {
-        GameManager.ChangeLevel(levelToLoad);
+        Destroy(PlayerManager.ActivePlayer().gameObject);
+        if (Cursor.lockState == CursorLockMode.Locked)
+            Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void LoadLevel(int levelIndex)
+    {
+        GameManager.ChangeLevel(levelIndex);
     }
 
     public void Continue()
