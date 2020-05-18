@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    public int levelToLoad = 0;
 
-    public void NewGame()
+    public void LoadLevel(int levelIndex)
     {
-        GameManager.ChangeLevel(levelToLoad);
+        GameManager.ChangeLevel(levelIndex);
     }
 
     public void Continue()

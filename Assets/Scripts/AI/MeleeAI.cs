@@ -47,6 +47,8 @@ public class MeleeAI : MonoBehaviour
 
         trigger = GetComponentInChildren<DetectPlayer>();
 
+        trigger.GetComponent<SphereCollider>().radius = enemyPreset.detectionRadius;
+
         navMeshAgent = GetComponent<NavMeshAgent>();
 
         fsm = new FSM("MeleeAI FSM");
