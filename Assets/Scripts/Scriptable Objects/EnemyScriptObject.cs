@@ -12,4 +12,5 @@ public class EnemyScriptObject : ScriptableObject
     public float idleTimeMax;
     public float detectionRadius;
     public float wanderRadius;
+    public float speed;
 }
