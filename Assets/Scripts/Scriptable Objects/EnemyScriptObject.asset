@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyScriptObject
   m_EditorClassIdentifier: 
   health: 100
-  damage: 5
+  damage: 15
   moveTime: 5
   idleTimeMin: 2
   idleTimeMax: 5
