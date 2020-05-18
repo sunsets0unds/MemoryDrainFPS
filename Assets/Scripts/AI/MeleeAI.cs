@@ -51,6 +51,8 @@ public class MeleeAI : MonoBehaviour
 
         navMeshAgent = GetComponent<NavMeshAgent>();
 
+        navMeshAgent.speed = enemyPreset.speed;
+
         fsm = new FSM("MeleeAI FSM");
 
         WanderState = fsm.AddState("WanderState");

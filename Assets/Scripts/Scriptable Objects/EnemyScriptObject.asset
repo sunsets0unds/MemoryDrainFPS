@@ -19,3 +19,4 @@ MonoBehaviour:
   idleTimeMax: 5
   detectionRadius: 25
   wanderRadius: 5
+  speed: 10
