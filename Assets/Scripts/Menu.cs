@@ -6,7 +6,11 @@ public class Menu : MonoBehaviour
 {
     private void Start()
     {
-        Destroy(PlayerManager.ActivePlayer().gameObject);
+        if(PlayerManager.ActivePlayer())
+        {
+            Destroy(PlayerManager.ActivePlayer().gameObject);
+        }
+        
         if (Cursor.lockState == CursorLockMode.Locked)
             Cursor.lockState = CursorLockMode.None;
     }
