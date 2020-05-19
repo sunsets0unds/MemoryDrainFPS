@@ -10,6 +10,15 @@ public class EnemyManager : MonoBehaviour
 
     public EnemyScriptObject enemyPreset;
 
+    public AudioClip hitSound;
+
+    private AudioSource source;
+
+    private void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
+
     private void Start()
     {
         health = enemyPreset.health;
@@ -25,5 +34,7 @@ public class EnemyManager : MonoBehaviour
     public void damageEnemy(int damage)
     {
         health -= damage;
+        source.clip = hitSound;
+        source.Play();
     }
 }

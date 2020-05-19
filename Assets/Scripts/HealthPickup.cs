@@ -5,6 +5,7 @@ using UnityEngine;
 public class HealthPickup : MonoBehaviour
 {
     public int amount = 25;
+    public AudioClip pickupSound;
 
     // Update is called once per frame
     void Update()
@@ -21,6 +22,8 @@ public class HealthPickup : MonoBehaviour
             if(playerManager.health < 100)
             {
                 playerManager.health += amount;
+                playerManager.source.clip = pickupSound;
+                playerManager.source.Play();
                 Destroy(this.gameObject);
             }
         }
