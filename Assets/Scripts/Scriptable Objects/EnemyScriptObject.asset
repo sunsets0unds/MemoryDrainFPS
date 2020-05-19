@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b125cd3820053e4bb5cd80e25b377fc, type: 3}
   m_Name: EnemyScriptObject
   m_EditorClassIdentifier: 
-  health: 100
+  health: 20
   damage: 15
   moveTime: 5
   idleTimeMin: 2
