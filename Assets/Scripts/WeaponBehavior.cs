@@ -17,6 +17,8 @@ public class WeaponBehavior : MonoBehaviour
     public static bool isFiring;
     private PlayerManager playerManager;
     private Rigidbody playerRigid;
+    public AudioClip shotSound;
+    private AudioSource source;
 
     // Start is called before the first frame update
     void Awake()
@@ -24,6 +26,7 @@ public class WeaponBehavior : MonoBehaviour
         playerCam = GetComponentInParent<Camera>();
         playerManager = GetComponentInParent<PlayerManager>();
         playerRigid = playerManager.gameObject.GetComponent<Rigidbody>();
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -45,6 +48,10 @@ public class WeaponBehavior : MonoBehaviour
             isFiring = true;
 
             InstantiateProjectile();
+
+            source.clip = shotSound;
+
+            source.Play();
 
             playerManager.ammo -= 1;
 

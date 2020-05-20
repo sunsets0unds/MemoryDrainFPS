@@ -5,6 +5,7 @@ using UnityEngine;
 public class AmmoPickup : MonoBehaviour
 {
     public int amount = 50;
+    public AudioClip pickupSound;
 
     // Update is called once per frame
     void Update()
@@ -21,6 +22,8 @@ public class AmmoPickup : MonoBehaviour
             if (playerManager.ammo < 200)
             {
                 playerManager.ammo += amount;
+                playerManager.source.clip = pickupSound;
+                playerManager.source.Play();
                 Destroy(this.gameObject);
             }
         }

@@ -56,6 +56,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -93,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 50
+  pickupSound: {fileID: 8300000, guid: a5029ce41b6feb44c976c440a60c5505, type: 3}
 --- !u!135 &361793161949066152
 SphereCollider:
   m_ObjectHideFlags: 0

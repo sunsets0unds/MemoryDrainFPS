@@ -16,6 +16,9 @@ public class PlayerManager : MonoBehaviour
     public GameObject noAmmoInd;
     public int deathSceneIndex = 0;
     public GameObject levelEndObj;
+    public AudioClip hurtSound;
+    [HideInInspector]
+    public AudioSource source;
     #endregion
 
     #region private variables
@@ -38,6 +41,8 @@ public class PlayerManager : MonoBehaviour
             playerStart = FindObjectOfType<PlayerStart>();
 
         gameObject.transform.position = playerStart.GetPosition();
+
+        source = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -116,6 +121,11 @@ public class PlayerManager : MonoBehaviour
     public void playerDamage(float damage)
     {
         this.health -= damage;
+        source.clip = hurtSound;
+        if(!source.isPlaying)
+        {
+            source.Play();
+        }
     }
 
     private void OnLevelWasLoaded(int level)
