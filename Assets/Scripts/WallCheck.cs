@@ -21,7 +21,7 @@ public class WallCheck : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Ground")
+        if(other.tag == "Wall")
         {
             wallCollide = true;
         }
@@ -29,7 +29,7 @@ public class WallCheck : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Ground")
+        if (other.tag == "Wall")
         {
             wallCollide = false;
         }
