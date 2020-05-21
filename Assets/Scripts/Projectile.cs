@@ -28,6 +28,10 @@ public class Projectile : MonoBehaviour
 
     private IEnumerator projectileLifespanCo()
     {
+        yield return new WaitForSeconds(.5f);
+
+        damage = damage / 2;
+
         yield return new WaitForSeconds(lifespan);
 
         Destroy(this.gameObject);
