@@ -23,7 +23,7 @@ public class MeleeAI : MonoBehaviour
     private DetectPlayer trigger;
     private NavMeshAgent navMeshAgent;
 
-    private FSM fsm;
+    public FSM fsm;
     private FSMState WanderState;
     private FSMState IdleState;
     private FSMState AlertState;
@@ -82,7 +82,7 @@ public class MeleeAI : MonoBehaviour
         WanderAction.Init(this.transform, home, navMeshAgent, wanderRadius, moveTime, "ToIdle");
         IdleAction.Init("Idling", Random.Range(idleTimeMin, idleTimeMax), "ToWander");
 
-        alertAction.Init(trigger, navMeshAgent, trigger.findPlayerInScene(), "ToIdle");
+        alertAction.Init(trigger, navMeshAgent, "ToIdle");
         meleeAction.Init(this.transform, damage, trigger, FindObjectOfType<PlayerManager>(), "ToAlert");
 
         fsm.Start("IdleState");

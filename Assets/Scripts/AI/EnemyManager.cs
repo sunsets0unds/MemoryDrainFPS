@@ -16,9 +16,12 @@ public class EnemyManager : MonoBehaviour
 
     public GameObject explosion;
 
+    private MeleeAI ai;
+
     private void Awake()
     {
         source = GetComponent<AudioSource>();
+        ai = GetComponent<MeleeAI>();
     }
 
     private void Start()
@@ -41,6 +44,10 @@ public class EnemyManager : MonoBehaviour
     public void damageEnemy(int damage)
     {
         health -= damage;
+        if (ai.fsm.GetCurrentStateName() != "AlertState")
+        {
+            ai.fsm.SendEvent("PlayerDetect");
+        }
         source.clip = hitSound;
         source.Play();
     }
