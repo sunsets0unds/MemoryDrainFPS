@@ -154,6 +154,7 @@ MonoBehaviour:
   health: 100
   enemyPreset: {fileID: 11400000, guid: 02b0fe7d5ad99fe4aaada53d942606f8, type: 2}
   hitSound: {fileID: 8300000, guid: 18c8718ff2d9b0949b2b506cbc59069f, type: 3}
+  explosion: {fileID: 159918, guid: a0040bf7072bc2f4e82d887d50a9c5e2, type: 3}
 --- !u!82 &691319374299229864
 AudioSource:
   m_ObjectHideFlags: 0

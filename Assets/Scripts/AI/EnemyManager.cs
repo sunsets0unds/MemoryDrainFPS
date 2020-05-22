@@ -14,6 +14,8 @@ public class EnemyManager : MonoBehaviour
 
     private AudioSource source;
 
+    public GameObject explosion;
+
     private void Awake()
     {
         source = GetComponent<AudioSource>();
@@ -28,7 +30,11 @@ public class EnemyManager : MonoBehaviour
     void Update()
     {
         if (health <= 0)
+        {
+            Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
+        }
+            
     }
 
     public void damageEnemy(int damage)
