@@ -14,11 +14,7 @@ public class ScenePortal : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            interactable.enabled = true;
-            interactable.text = "Press " + interactKey.ToString() + " to end level";
-
-            if(Input.GetKeyDown(interactKey))
-                GameManager.ChangeLevel(sceneIndex);
+            GameManager.ChangeLevel(sceneIndex);
         }
     }
 
