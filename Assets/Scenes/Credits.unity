@@ -623,7 +623,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -272, y: 217}
+  m_AnchoredPosition: {x: -272, y: 235}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &535116621
@@ -704,7 +704,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -272, y: 62}
+  m_AnchoredPosition: {x: -272, y: 113}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1209882826
@@ -720,7 +720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.81312734, b: 0.85882354, a: 1}
+  m_Color: {r: 0, g: 0.85882354, b: 0.39960802, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -743,7 +743,8 @@ MonoBehaviour:
     Styled Modular Pack: karboosx\r\n\u2022\tSnaps Prototype | Sci-Fi / Industrial:
     Asset Store Originals\r\n\u2022\tShoot\xB4em up Enemy Spikeball: Vis Games\r\n\u2022\tScifi
     Gun Collection: Black Curtain Studio\r\n\u2022\tFree Cyberpunk Music Loops: Telemechanical\r\n\u2022\tMusic
-    in level: Continental Drift by Nookie\r\n\u2022\tOther Sounds: Freesound.org\n\n\n"
+    in level: Continental Drift by Nookie\r\n\u2022\tOther Sounds: Freesound.org\n\u2022\tExplosive
+    VFX: Gustav Hagerling\n\n\n"
 --- !u!222 &1209882827
 CanvasRenderer:
   m_ObjectHideFlags: 0
