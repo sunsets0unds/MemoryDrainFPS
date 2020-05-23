@@ -32,11 +32,13 @@ public class WeaponBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(fireKey) && playerManager.haveAmmo)
+        if(!PauseMenu.GamePaused)
         {
-            StartCoroutine(FireProjectileCo());
+            if (Input.GetKey(fireKey) && playerManager.haveAmmo)
+            {
+                StartCoroutine(FireProjectileCo());
+            }
         }
-        
     }
 
     private IEnumerator FireProjectileCo()
