@@ -8,29 +8,28 @@ public class AlertAction : FSMAction
 {
     private DetectPlayer awareCollider;
     private NavMeshAgent navMeshAgent;
-    private Vector3 positionTo;
     private string finishEvent;
 
     public AlertAction(FSMState owner) : base(owner)
     { }
 
-    public void Init(DetectPlayer trigger, NavMeshAgent navMeshAgent, Vector3 to, string finishEvent = null)
+    public void Init(DetectPlayer trigger, NavMeshAgent navMeshAgent, string finishEvent = null)
     {
         this.awareCollider = trigger;
         this.navMeshAgent = navMeshAgent;
-        this.positionTo = to;
         this.finishEvent = finishEvent;
     }
 
     public override void OnEnter()
     {
+        SetPosition(awareCollider.findPlayerInScene());
+
         if (!CheckTrigger())
         {
             Finish();
             return;
         }
-
-        SetPosition(positionTo);
+        
     }
 
     public override void OnUpdate()
