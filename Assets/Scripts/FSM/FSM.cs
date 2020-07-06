@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace StateMachine
 {
+    /*
+     * Written by Michael Amatucci
+     * Using tutorial from theknightsofunity.com
+     */
+
     public class FSM
     {
         private readonly string name;
